@@ -1,14 +1,27 @@
-print("\nGeorge Scaria SJC23MCA030")
-print("MCA 2023-2025\n")
-import numpy as np
-array_2d=np.array( [ [1+2j, 3+4j, 5+6j], [7+8j, 9+10j, 11+12j] ],dtype=complex)
-print("2d array")
-print(array_2d)
-row, column=array_2d.shape
-print("Rows= ", row)
-print("Column= ", column)
-dimention=array_2d.ndim
-print("Dimension of array : ", dimention)
-reshape_array=array_2d.reshape(3,2)
-print("reshaped array 3x2")
-print(reshape_array)
+print("23mca030 : GEORGE SCARIA")
+import pandas as pd
+import matplotlib.pyplot as plt
+customer = pd.read_csv('customer_data.csv')
+print(customer.head())
+point = customer.iloc[:, 3:5].values
+x = point[:, 0]
+y = point[:, 1]
+plt.scatter(x, y, s=50, alpha=0.7)
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score')
+plt.show()
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=6, random_state=0)
+kmeans.fit(point)
+predicted_cluster_index = kmeans.predict(point)
+plt.scatter(x, y, c=predicted_cluster_index, s=50, alpha=0.7, cmap='viridis')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score')
+plt.show()
+kmeans = KMeans(n_clusters=7, random_state=0)
+kmeans.fit(point)
+predicted_cluster_index = kmeans.predict(point)
+plt.scatter(x, y, c=predicted_cluster_index, s=50, alpha=0.7, cmap='viridis')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score')
+plt.show()
